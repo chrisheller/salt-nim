@@ -8,7 +8,7 @@ https://github.com/Araq/Nim.git:
     - require:
       - pkg: git
     - unless:
-      - ls /usr/bin/nim
+      - ls /usr/local/nim/bin/nim
 
 https://github.com/nim-lang/csources:
   git.latest:
@@ -16,7 +16,7 @@ https://github.com/nim-lang/csources:
     - target: /usr/local/nim/csources
     - depth: 1
     - unless:
-      - ls /usr/bin/nim/csources
+      - ls /usr/local/nim/csources
 
 build_nim_csources:
   cmd.wait:
