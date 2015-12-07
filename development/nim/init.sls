@@ -39,6 +39,10 @@ build_nim:
     - watch: 
       - git: "https://github.com/Araq/Nim.git"
 
+/usr/local/nim/bin/nim:
+  file.managed:
+    - mode: 755
+
 nim_mingw:
   file.append:
     - name: /usr/local/nim/config/nim.cfg
