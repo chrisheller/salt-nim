@@ -42,6 +42,8 @@ build_nim:
 /usr/local/nim/bin/nim:
   file.managed:
     - mode: 755
+    - create: false
+    - replace: false
 
 nim_mingw:
   file.append:
