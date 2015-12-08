@@ -1,9 +1,16 @@
+# Example for building Nim at a specific revision
+# {% set nim_git_rev = '6818304e011b4376820401fbe37b25c973167ac9' %}
+{% set nim_git_rev = 'devel' %}
+
+# (The C sources should typically be 'devel' though)
+{% set csources_git_rev = 'devel' %}
+
 git:
   pkg.installed
 
 https://github.com/nim-lang/Nim.git:
   git.latest:
-    - rev: devel
+    - rev: {{ nim_git_rev }}
     - target: /usr/local/nim
     - require:
       - pkg: git
@@ -12,7 +19,7 @@ https://github.com/nim-lang/Nim.git:
 
 https://github.com/nim-lang/csources:
   git.latest:
-    - rev: devel
+    - rev: {{ csources_git_rev }}
     - target: /usr/local/nim/csources
     - depth: 1
     - unless:
