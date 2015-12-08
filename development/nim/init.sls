@@ -1,9 +1,10 @@
 # Example for building Nim at a specific revision
-# {% set nim_git_rev = '6818304e011b4376820401fbe37b25c973167ac9' %}
-{% set nim_git_rev = 'devel' %}
+{% set nim_git_rev = "HEAD" %} # or something like "6818304e011b4376820401fbe37b25c973167ac9"
+{% set nim_git_branch = "devel" %}
 
-# (The C sources should typically be 'devel' though)
-{% set csources_git_rev = 'devel' %}
+# (The C sources should not typically need to be changed)
+{% set csources_git_rev = "HEAD" %}
+{% set csources_git_branch = "devel" %}
 
 git:
   pkg.installed
@@ -11,19 +12,23 @@ git:
 https://github.com/nim-lang/Nim.git:
   git.latest:
     - rev: {{ nim_git_rev }}
+    - branch: {{ nim_git_branch }}
+    - force_clone: true
+    - force_reset: true
     - target: /usr/local/nim
     - require:
       - pkg: git
-    - unless:
-      - ls /usr/local/nim/bin/nim
 
 https://github.com/nim-lang/csources:
   git.latest:
     - rev: {{ csources_git_rev }}
+    - branch: {{ csources_git_branch }}
+    - force_clone: true
+    - force_reset: true
     - target: /usr/local/nim/csources
     - depth: 1
-    - unless:
-      - ls /usr/local/nim/csources
+    - watch:
+      - git: "https://github.com/nim-lang/Nim.git"
 
 build_nim_csources:
   cmd.wait:
