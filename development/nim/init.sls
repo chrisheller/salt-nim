@@ -1,7 +1,7 @@
 git:
   pkg.installed
 
-https://github.com/Araq/Nim.git:
+https://github.com/nim-lang/Nim.git:
   git.latest:
     - rev: devel
     - target: /usr/local/nim
@@ -30,14 +30,14 @@ build_nim_koch:
     - name: bin/nim c koch
     - cwd: /usr/local/nim
     - watch: 
-      - git: "https://github.com/Araq/Nim.git"
+      - git: "https://github.com/nim-lang/Nim.git"
 
 build_nim:
   cmd.wait:
     - name: ./koch boot -d:release
     - cwd: /usr/local/nim
     - watch: 
-      - git: "https://github.com/Araq/Nim.git"
+      - git: "https://github.com/nim-lang/Nim.git"
 
 /usr/local/nim/bin/nim:
   file.managed:
