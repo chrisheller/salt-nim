@@ -1,10 +1,10 @@
 # Example for building Nim at a specific revision
-{% set nim_git_rev = "HEAD" %} # or something like "6818304e011b4376820401fbe37b25c973167ac9"
-{% set nim_git_branch = "devel" %}
+{% set nim_git_rev = salt["pillar.get"]("nim_git_rev", "HEAD") %}
+{% set nim_git_branch = salt["pillar.get"]("nim_git_branch", "devel") %}
 
 # (The C sources should not typically need to be changed)
-{% set csources_git_rev = "HEAD" %}
-{% set csources_git_branch = "devel" %}
+{% set csources_git_rev = salt["pillar.get"]("csources_git_rev", "HEAD") %}
+{% set csources_git_branch = salt["pillar.get"]("csources_git_branch", "devel") %}
 
 git:
   pkg.installed
