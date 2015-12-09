@@ -1,5 +1,5 @@
 # salt-nim
-Salt formulas for installing/building Nim
+[Salt](https://docs.saltstack.com/) formulas for installing/building [Nim](http://nim-lang.org/)
 
 ## Basic Usage
 
@@ -30,8 +30,15 @@ You can also set the revision and branch for the C sources for bootstrapping Nim
  * csources_git_rev : Revision to check out and build. Defaults to HEAD
  * csources_git_branch : Branch to check out and build. Defaults to devel
 
+For example, to build Nim at revision ca47256efacf8cad6030c86ce02965cce66e6b37 and install into a directory called nimtest in your HOME directory, you can pass the pillar data on the command line like this: 
+
+```sh
+sudo salt-call --file-root . --local state.sls development.nim pillar="{ nim_git_rev: ca47256efacf8cad6030c86ce02965cce66e6b37, nim_dir: ${HOME}/nimtest }"
+```
+
 ## TODO 
 
  * Add notes about how to get a basic Salt installation going for those that don't have that already
+   * This should include information about how to set things up so that salt can be run without sudo
  * Add a formula for building nimble
 
